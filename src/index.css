@@ -37,8 +37,8 @@
     --muted: 206 20% 92%;
     --muted-foreground: 205 20% 40%;
     
-    /* Destructive */
-    --destructive: 0 84% 60%;
+    /* Destructive - using accent color */
+    --destructive: 230 90% 26%;
     --destructive-foreground: 0 0% 100%;
     
     /* Borders and inputs */
@@ -48,15 +48,15 @@
     
     --radius: 0.5rem;
     
-    /* Custom eCommerce tokens */
+    /* Custom eCommerce tokens - using only approved palette */
     --navbar-bg: 200 91% 28%;
     --navbar-foreground: 0 0% 100%;
     --footer-bg: 230 90% 26%;
     --footer-foreground: 0 0% 100%;
     --category-bg: 0 0% 100%;
-    --deal-badge: 0 84% 55%;
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
+    --deal-badge: 171 41% 58%;
+    --success: 171 41% 58%;
+    --success-foreground: 205 90% 4%;
     
     /* Sidebar */
     --sidebar-background: 0 0% 100%;

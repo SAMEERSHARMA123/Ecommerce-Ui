@@ -24,11 +24,11 @@ const ProductSection = ({ title, products, layout, onAddToCart }: ProductSection
           </a>
         </div>
 
-        {/* Products */}
+        {/* Products - consistent sizing */}
         {layout === 'scroll' ? (
           <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4">
             {products.map((product) => (
-              <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">
+              <div key={product.id} className="flex-shrink-0 w-[180px]">
                 <ProductCard product={product} onAddToCart={onAddToCart} />
               </div>
             ))}

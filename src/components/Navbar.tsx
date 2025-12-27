@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Menu, Search, ShoppingCart, User, Heart } from 'lucide-react';
+import { Menu, ShoppingCart, User, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import AnimatedSearchInput from './AnimatedSearchInput';
 import Sidebar from './Sidebar';
 
 interface NavbarProps {
@@ -9,34 +9,10 @@ interface NavbarProps {
   onCartBump?: () => void;
 }
 
-const searchPlaceholders = [
-  'Search for mobiles',
-  'Search for laptops',
-  'Search for fashion',
-  'Search for electronics',
-  'Search for home essentials',
-  'Search for appliances',
-];
-
 const Navbar = ({ cartCount, onCartBump }: NavbarProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [placeholderIndex, setPlaceholderIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [prevCartCount, setPrevCartCount] = useState(cartCount);
   const [cartBump, setCartBump] = useState(false);
-
-  // Rotate placeholder text
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setPlaceholderIndex((prev) => (prev + 1) % searchPlaceholders.length);
-        setIsAnimating(false);
-      }, 300);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   // Cart bump animation
   useEffect(() => {
@@ -72,18 +48,9 @@ const Navbar = ({ cartCount, onCartBump }: NavbarProps) => {
               </a>
             </div>
 
-            {/* Center section: Search */}
+            {/* Center section: Search with animated placeholder */}
             <div className="flex-1 max-w-2xl">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  type="search"
-                  placeholder={searchPlaceholders[placeholderIndex]}
-                  className={`w-full pl-10 pr-4 h-10 bg-card border-0 rounded-lg text-foreground placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-secondary transition-all ${
-                    isAnimating ? 'placeholder:opacity-0' : 'placeholder:opacity-100'
-                  }`}
-                />
-              </div>
+              <AnimatedSearchInput />
             </div>
 
             {/* Right section: Actions */}

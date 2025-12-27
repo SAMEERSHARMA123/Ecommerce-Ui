@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Search } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const placeholders = [
   'Search for mobiles',
@@ -13,9 +12,7 @@ const placeholders = [
 ];
 
 const AnimatedSearchInput = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [nextIndex, setNextIndex] = useState(1);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,13 +21,7 @@ const AnimatedSearchInput = () => {
     if (isPaused || inputValue.length > 0) return;
 
     const interval = setInterval(() => {
-      setIsAnimating(true);
-      
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % placeholders.length);
-        setNextIndex((prev) => (prev + 1) % placeholders.length);
-        setIsAnimating(false);
-      }, 500);
+      setActiveIndex((prev) => (prev + 1) % placeholders.length);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -60,30 +51,29 @@ const AnimatedSearchInput = () => {
       {/* Animated placeholder container */}
       {inputValue.length === 0 && (
         <div className="absolute left-10 top-0 bottom-0 right-4 pointer-events-none overflow-hidden flex items-center">
-          <div
-            className={cn(
-              "absolute w-full transition-all duration-500 ease-in-out",
-              isAnimating 
-                ? "-translate-y-full opacity-0" 
-                : "translate-y-0 opacity-100"
-            )}
-          >
-            <span className="text-muted-foreground text-sm">
-              {placeholders[currentIndex]}
-            </span>
-          </div>
-          <div
-            className={cn(
-              "absolute w-full transition-all duration-500 ease-in-out",
-              isAnimating 
-                ? "translate-y-0 opacity-100" 
-                : "translate-y-full opacity-0"
-            )}
-          >
-            <span className="text-muted-foreground text-sm">
-              {placeholders[nextIndex]}
-            </span>
-          </div>
+          {placeholders.map((placeholder, index) => (
+            <div
+              key={index}
+              className="absolute w-full transition-none"
+              style={{
+                transform: index === activeIndex 
+                  ? 'translateY(0)' 
+                  : index === (activeIndex - 1 + placeholders.length) % placeholders.length
+                    ? 'translateY(-100%)'
+                    : 'translateY(100%)',
+                opacity: index === activeIndex ? 1 : 0,
+                animation: index === activeIndex 
+                  ? 'slideInFromBottom 0.5s ease-out forwards'
+                  : index === (activeIndex - 1 + placeholders.length) % placeholders.length
+                    ? 'slideOutToTop 0.5s ease-out forwards'
+                    : 'none',
+              }}
+            >
+              <span className="text-muted-foreground text-sm">
+                {placeholder}
+              </span>
+            </div>
+          ))}
         </div>
       )}
 
@@ -97,6 +87,30 @@ const AnimatedSearchInput = () => {
         className="w-full h-10 pl-10 pr-4 bg-card border-0 rounded-lg text-foreground text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary transition-all"
         aria-label="Search products"
       />
+
+      <style>{`
+        @keyframes slideInFromBottom {
+          0% {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes slideOutToTop {
+          0% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-100%);
+            opacity: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 };

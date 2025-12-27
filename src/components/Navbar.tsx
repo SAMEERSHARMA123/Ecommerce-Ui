@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Menu, ShoppingCart, User, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AnimatedSearchInput from './AnimatedSearchInput';
 import Sidebar from './Sidebar';
+import { useCart } from '@/context/CartContext';
 
-interface NavbarProps {
-  cartCount: number;
-  onCartBump?: () => void;
-}
-
-const Navbar = ({ cartCount, onCartBump }: NavbarProps) => {
+const Navbar = () => {
+  const navigate = useNavigate();
+  const { getCartCount } = useCart();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [prevCartCount, setPrevCartCount] = useState(cartCount);
+  const [prevCartCount, setPrevCartCount] = useState(getCartCount());
   const [cartBump, setCartBump] = useState(false);
+
+  const cartCount = getCartCount();
 
   // Cart bump animation
   useEffect(() => {
@@ -85,7 +86,7 @@ const Navbar = ({ cartCount, onCartBump }: NavbarProps) => {
               {/* Cart */}
               <button 
                 className="relative p-2 rounded-lg text-navbar-foreground hover:bg-primary-foreground/10 transition-colors"
-                onClick={onCartBump}
+                onClick={() => navigate('/cart')}
               >
                 <ShoppingCart className={`h-6 w-6 transition-transform ${cartBump ? 'animate-cart-bump' : ''}`} />
                 {cartCount > 0 && (

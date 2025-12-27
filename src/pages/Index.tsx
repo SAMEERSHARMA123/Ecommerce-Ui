@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { toast } from 'sonner';
 import Navbar from '@/components/Navbar';
 import CategoryStrip from '@/components/CategoryStrip';
@@ -8,12 +7,13 @@ import ProductSection from '@/components/ProductSection';
 import Footer from '@/components/Footer';
 import { Product } from '@/components/ProductCard';
 import { dealsProducts, trendingProducts, fashionProducts, recommendedProducts } from '@/data/products';
+import { useCart } from '@/context/CartContext';
 
 const Index = () => {
-  const [cartCount, setCartCount] = useState(0);
+  const { addToCart } = useCart();
 
   const handleAddToCart = (product: Product) => {
-    setCartCount((prev) => prev + 1);
+    addToCart(product);
     toast.success(`${product.name.substring(0, 30)}... added to cart!`, {
       description: `₹${product.price.toLocaleString()}`,
       duration: 2000,
@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Fixed Navbar */}
-      <Navbar cartCount={cartCount} />
+      <Navbar />
 
       {/* Main content with padding for fixed navbar */}
       <main className="pt-16">

@@ -2,95 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* ShopEase eCommerce Design System
+   Color Palette:
+   - Primary: #07588A (deep blue)
+   - Secondary: #6AC1B8 (teal)
+   - Accent: #081D7D (dark navy)
+   - Text: #010D14 (near black)
+   - Background: #F2F6F9 (light gray-blue)
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* Core brand colors - converted to HSL */
+    --primary: 200 91% 28%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 171 41% 58%;
+    --secondary-foreground: 200 91% 10%;
+    
+    --accent: 230 90% 26%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Background and surfaces */
+    --background: 206 37% 97%;
+    --foreground: 205 90% 4%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 205 90% 4%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
+    --popover-foreground: 205 90% 4%;
+    
+    /* Muted and subtle */
+    --muted: 206 20% 92%;
+    --muted-foreground: 205 20% 40%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders and inputs */
+    --border: 206 20% 88%;
+    --input: 206 20% 88%;
+    --ring: 200 91% 28%;
+    
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Custom eCommerce tokens */
+    --navbar-bg: 200 91% 28%;
+    --navbar-foreground: 0 0% 100%;
+    --footer-bg: 230 90% 26%;
+    --footer-foreground: 0 0% 100%;
+    --category-bg: 0 0% 100%;
+    --deal-badge: 0 84% 55%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 205 90% 4%;
+    --sidebar-primary: 200 91% 28%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 206 37% 97%;
+    --sidebar-accent-foreground: 205 90% 4%;
+    --sidebar-border: 206 20% 88%;
+    --sidebar-ring: 200 91% 28%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --primary: 171 41% 58%;
+    --primary-foreground: 205 90% 4%;
+    
+    --secondary: 200 91% 28%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --accent: 171 41% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    --background: 205 90% 4%;
+    --foreground: 206 37% 97%;
+    
+    --card: 205 50% 8%;
+    --card-foreground: 206 37% 97%;
+    
+    --popover: 205 50% 8%;
+    --popover-foreground: 206 37% 97%;
+    
+    --muted: 205 30% 15%;
+    --muted-foreground: 206 20% 65%;
+    
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 205 30% 18%;
+    --input: 205 30% 18%;
+    --ring: 171 41% 58%;
+    
+    --navbar-bg: 205 50% 8%;
+    --navbar-foreground: 0 0% 100%;
+    --footer-bg: 205 60% 6%;
+    --footer-foreground: 206 20% 85%;
+    
+    --sidebar-background: 205 50% 8%;
+    --sidebar-foreground: 206 37% 97%;
+    --sidebar-primary: 171 41% 58%;
+    --sidebar-primary-foreground: 205 90% 4%;
+    --sidebar-accent: 205 30% 15%;
+    --sidebar-accent-foreground: 206 37% 97%;
+    --sidebar-border: 205 30% 18%;
+    --sidebar-ring: 171 41% 58%;
   }
 }
 
@@ -98,8 +118,94 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
-  body {
-    @apply bg-background text-foreground;
+  
+  html {
+    scroll-behavior: smooth;
   }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Geist Sans', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Product card hover effect */
+  .product-card {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .product-card:hover {
+    @apply shadow-xl -translate-y-1;
+  }
+  
+  /* Animated placeholder container */
+  .search-placeholder {
+    @apply relative overflow-hidden;
+  }
+  
+  /* Category item hover */
+  .category-item {
+    @apply transition-transform duration-200 ease-out;
+  }
+  
+  .category-item:hover {
+    @apply -translate-y-0.5;
+  }
+  
+  /* Cart badge animation */
+  .cart-badge-animate {
+    animation: cart-bounce 0.4s ease-out;
+  }
+  
+  /* Banner slide animation */
+  .banner-slide {
+    @apply transition-opacity duration-500 ease-in-out;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar for category strip */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Gradient overlays */
+  .gradient-overlay {
+    background: linear-gradient(to right, hsl(var(--primary) / 0.9), hsl(var(--accent) / 0.8));
+  }
+}
+
+/* Keyframe animations */
+@keyframes cart-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(100%); opacity: 0; }
+  10% { transform: translateY(0); opacity: 1; }
+  90% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }

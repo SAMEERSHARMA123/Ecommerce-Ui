@@ -1,4 +1,5 @@
 import { Star, Heart, ShoppingCart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 export interface Product {
@@ -18,14 +19,23 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+  const navigate = useNavigate();
+  
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
+  const handleProductClick = () => {
+    navigate(`/product/${product.id}`);
+  };
+
   return (
     <div className="product-card bg-card rounded-lg overflow-hidden shadow-product group h-full flex flex-col">
       {/* Image container - fixed aspect ratio */}
-      <div className="relative aspect-square overflow-hidden bg-muted">
+      <div 
+        className="relative aspect-square overflow-hidden bg-muted cursor-pointer"
+        onClick={handleProductClick}
+      >
         <img
           src={product.image}
           alt={product.name}
@@ -60,7 +70,10 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
 
       {/* Content - consistent padding */}
       <div className="p-3 flex flex-col flex-1">
-        <h3 className="text-sm font-medium text-foreground line-clamp-2 mb-2 group-hover:text-primary transition-colors flex-1">
+        <h3 
+          className="text-sm font-medium text-foreground line-clamp-2 mb-2 group-hover:text-primary transition-colors flex-1 cursor-pointer"
+          onClick={handleProductClick}
+        >
           {product.name}
         </h3>
 
